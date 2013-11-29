@@ -2,7 +2,14 @@ cmake_minimum_required(VERSION 2.8)
 
 project(glv)
 
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+find_package(GLEW REQUIRED)
+
 include_directories(include)
+include_directories(${OPENGL_INCLUDE_DIR})
+include_directories(${GLUT_INCLUDE_DIRS})
+include_directories(${GLEW_INCLUDE_DIRS})
 
 set(SOURCES
   src/glv_sliders.cpp
@@ -52,5 +59,5 @@ add_library(${PROJECT_NAME} ${SOURCES})
 
 foreach(NAME ${EXAMPLES})
   add_executable(${PROJECT_NAME}_${NAME} examples/${NAME}.cpp)
-  target_link_libraries(${PROJECT_NAME}_${NAME} ${PROJECT_NAME} GL GLU GLEW glut)
+  target_link_libraries(${PROJECT_NAME}_${NAME} ${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${GLUT_LIBRARIES})
 endforeach()
