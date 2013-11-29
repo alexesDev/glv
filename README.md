@@ -7,6 +7,10 @@ The main View class provides a common interface that all other widgets inherit f
 
 More information on http://mat.ucsb.edu/glv/
 
+### Screenshot
+
+![screenshot](http://mat.ucsb.edu/glv/gfx/Screenshot1.png)
+
 ### Build on Linux
 
 ```
