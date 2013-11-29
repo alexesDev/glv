@@ -53,6 +53,7 @@ set(EXAMPLES
   drawText
   soaring
   graphicsData
+  widgets
 )
 
 add_library(${PROJECT_NAME} ${SOURCES})

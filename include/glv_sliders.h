@@ -352,11 +352,11 @@ TEM void SliderGrid<Dim>::onDraw(GLV& g){
 
 	Point2 pts[Dim*Dim];
 	for(int i=0; i<Dim; ++i){
-		float f = (i+to01(getValue(i))) * rDim;
+		float f = (i+this->to01(getValue(i))) * rDim;
 		float x = f*w;
 		
 		for(int j=0; j<Dim; ++j){
-			pts[i*Dim+j](x, (1.-(j+to01(getValue(j))) * rDim) * h);
+			pts[i*Dim+j](x, (1.-(j+this->to01(getValue(j))) * rDim) * h);
 		}
 	}
 	paint(Points, pts, GLV_ARRAY_SIZE(pts));
@@ -367,8 +367,8 @@ TEM bool SliderGrid<Dim>::onEvent(Event::t e, GLV& g){
 
 	switch(e){
 	case Event::MouseDrag:
-					valueAdd( g.mouse().dx()/w * diam() * Dim * g.mouse().sens(), cx);
-		if(cx!=cy)	valueAdd(-g.mouse().dy()/h * diam() * Dim * g.mouse().sens(), cy);
+		this->valueAdd( g.mouse().dx()/w * diam() * Dim * g.mouse().sens(), cx);
+		if(cx!=cy)	this->valueAdd(-g.mouse().dy()/h * diam() * Dim * g.mouse().sens(), cy);
 		break;
 		
 	case Event::MouseDown:
@@ -381,8 +381,8 @@ TEM bool SliderGrid<Dim>::onEvent(Event::t e, GLV& g){
 		if(g.mouse().left() && !g.mouse().right()){
 			float cw = w/Dim;
 			float ch = h/Dim;
-						setValue(toInterval(    (g.mouse().xRel()/cw - cx)), cx);
-			if(cx!=cy)	setValue(toInterval(1.f-(g.mouse().yRel()/ch - ((Dim-1)-cy))), cy);
+						this->setValue(toInterval(    (g.mouse().xRel()/cw - cx)), cx);
+			if(cx!=cy)	this->setValue(toInterval(1.f-(g.mouse().yRel()/ch - ((Dim-1)-cy))), cy);
 		}
 		break;
 		
